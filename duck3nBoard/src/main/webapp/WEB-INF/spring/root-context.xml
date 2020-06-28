@@ -37,8 +37,11 @@
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />  
 		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> <!-- ** :폴더, * : 파일 -->
 		
-		
-		
-</bean>
+	</bean>
+	
+	<!-- 파일 스캔 : DB 관련 -->
+	<context:component-scan base-package="kr.co.service"></context:component-scan>
+	<context:component-scan base-package="kr.co.dao"></context:component-scan>
+	<context:component-scan base-package="kr.co.vo"></context:component-scan>
 		
 </beans>
