@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Root Context : 웹과 관련되지 않은 자원들을 입력하는 곳 - mysql 및 mybatis 관련 설정 -->
+	
+	
+	<!-- MySQL dataSource 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		
+		<!-- driver 관련 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		
+		<!-- 접속 관련 -->
+		<property name="url" value="jdbc:mysql://sampledb.ccuqmybkkrrb.ap-northeast-2.rds.amazonaws.com:3306/duck3n" />
+		<property name="username" value="duck3n" />
+		<property name="password" value="tiger" />
+		
+		<!-- 서버 용량 -->
+		<property name="initialSize" value="3" />
+		<property name="maxTotal" value="60" />
+		<property name="maxIdle" value="6000" />
+		
+	</bean>
+	
+	<!-- Sql SessionFactory -->
+	<bean id="sqlsessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		
+		<!-- mybatis-config : typealiases를 통해 VO별로 별명을 지정해주고 연결시켜 줌-->
+		<property name="dataSource" ref="dataSource" />
+		
+		<property name="configLocation" value="classpath:/mybatis-config.xml" />  
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> <!-- ** :폴더, * : 파일 -->
+		
+		
+		
+</bean>
+		
+</beans>
