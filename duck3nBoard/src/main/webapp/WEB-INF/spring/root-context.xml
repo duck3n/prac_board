@@ -28,16 +28,21 @@
 		
 	</bean>
 	
-	<!-- Sql SessionFactory -->
-	<bean id="sqlsessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- Sql SessionFactory -->
+		<bean id="sqlsessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			
+			<!-- mybatis-config : typealiases를 통해 VO별로 별명을 지정해주고 연결시켜 줌-->
+			<property name="dataSource" ref="dataSource" />
+			
+			<property name="configLocation" value="classpath:/mybatis-config.xml" />  
+			<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> <!-- ** :폴더, * : 파일 -->
+			
+		</bean>
 		
-		<!-- mybatis-config : typealiases를 통해 VO별로 별명을 지정해주고 연결시켜 줌-->
-		<property name="dataSource" ref="dataSource" />
-		
-		<property name="configLocation" value="classpath:/mybatis-config.xml" />  
-		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> <!-- ** :폴더, * : 파일 -->
-		
-	</bean>
+		<!-- sqlSession -->
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	        <constructor-arg name="sqlSessionFactory" ref="sqlsessionFactory"></constructor-arg>
+	    </bean>
 	
 	<!-- 파일 스캔 : DB 관련 -->
 	<context:component-scan base-package="kr.co.service"></context:component-scan>

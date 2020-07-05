@@ -1,5 +1,7 @@
 package kr.co.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +22,11 @@ public class BoardDAOImpl implements BoardDAO{
 	public void write(BoardVO boardVO) throws Exception {
 		ss.insert("boardMapper.insert", boardVO);
 		
+	}
+
+	@Override
+	public List<BoardVO> list() throws Exception {
+		return ss.selectList("boardMapper.list");
 	}
 
 }

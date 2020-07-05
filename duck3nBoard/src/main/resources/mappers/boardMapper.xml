@@ -15,9 +15,17 @@
    #{title}, #{content}, #{writer}
    )
   
-   </insert>
+   </insert>	
+   
+   <!-- 게시판 글 목록 조회 -->
+   
+   <select id="list" resultType="kr.co.vo.BoardVO">
+   
+   select * from MP_BOARD
+   order by BNO desc
+   
+   </select>
+	
 
-   
-   
    
 </mapper>
