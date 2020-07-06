@@ -50,6 +50,15 @@ public class BoardController {
 		
 	}
 	
+	// 게시판 글 개별 상세 조회
+	@RequestMapping(value = "/readView", method = RequestMethod.GET)
+	public String read(BoardVO vo, HttpServletRequest req) throws Exception {
+		
+		req.setAttribute("read", service.read(vo.getBno()));
+		return "board/readView";
+		
+	}
+	
 	
 	
 }

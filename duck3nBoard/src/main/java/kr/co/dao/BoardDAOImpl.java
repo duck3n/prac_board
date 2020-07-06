@@ -29,4 +29,9 @@ public class BoardDAOImpl implements BoardDAO{
 		return ss.selectList("boardMapper.list");
 	}
 
+	@Override
+	public BoardVO read(int bno) throws Exception {
+		return ss.selectOne("boardMapper.read", bno);
+	}
+
 }

@@ -25,6 +25,16 @@
    order by BNO desc
    
    </select>
+   
+   <!-- 게시판 개별 글 상세 조회 -->
+   
+   <select id="read" parameterType="int" resultType="kr.co.vo.BoardVO">
+   
+   select * from MP_BOARD
+   where
+   BNO = #{bno}
+   
+   </select>
 	
 
    
