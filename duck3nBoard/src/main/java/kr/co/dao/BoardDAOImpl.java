@@ -34,4 +34,15 @@ public class BoardDAOImpl implements BoardDAO{
 		return ss.selectOne("boardMapper.read", bno);
 	}
 
+	@Override
+	public void delete(int bno) throws Exception {
+		ss.delete("boardMapper.delete", bno);
+	}
+
+	@Override
+	public void update(BoardVO boardVO) throws Exception {
+		ss.update("boardMapper.update", boardVO);
+		
+	}
+
 }

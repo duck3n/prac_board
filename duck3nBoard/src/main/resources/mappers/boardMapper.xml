@@ -35,7 +35,28 @@
    BNO = #{bno}
    
    </select>
+   
+   <!-- 게시판 글 삭제 -->
+   
+   <delete id="delete" parameterType="int">
+   
+   delete from MP_BOARD
+   where
+   BNO = #{bno}
+   
+   </delete>
 	
+   <!-- 게시판 글 수정 -->
+   
+   <update id="update" parameterType="kr.co.vo.BoardVO">
+   
+   update MP_BOARD
+   set
+   title = #{title},
+   content = #{content}
+   where BNO = #{bno}
+   
+   </update>
 
    
 </mapper>
